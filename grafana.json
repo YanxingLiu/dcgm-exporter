@@ -15,7 +15,7 @@
       }
     ]
   },
-  "description": "Dashboard to visualize data from the NVIDIA Data Center GPU Manager (DCGM).",
+  "description": "用于可视化 NVIDIA 数据中心 GPU 管理器 (DCGM) 数据的仪表板。",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
@@ -28,7 +28,7 @@
       "keepTime": false,
       "tags": [],
       "targetBlank": true,
-      "title": "Docs",
+      "title": "文档",
       "tooltip": "",
       "type": "link",
       "url": "https://docs.nebius.com/observability"
@@ -40,7 +40,7 @@
       "keepTime": false,
       "tags": [],
       "targetBlank": true,
-      "title": "GitHub",
+      "title": "GitHub 仓库",
       "tooltip": "",
       "type": "link",
       "url": "https://github.com/nebius/observability"
@@ -52,7 +52,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Host load averages indicate system processing demand over 1, 5, and 15-minute intervals. Values reflect the number of processes waiting for resources.",
+      "description": "主机平均负载表示 1、5 和 15 分钟间隔内的系统处理需求。数值反映了等待资源的进程数。",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -126,26 +126,26 @@
         {
           "expr": "node_load1{instance_id=\"$hostname\"}",
           "instant": false,
-          "legendFormat": "1min",
+          "legendFormat": "1分钟",
           "range": true,
           "refId": "A"
         },
         {
           "expr": "node_load5{instance_id=\"$hostname\"}",
           "instant": false,
-          "legendFormat": "5min",
+          "legendFormat": "5分钟",
           "range": true,
           "refId": "B"
         },
         {
           "expr": "node_load15{instance_id=\"$hostname\"}",
           "instant": false,
-          "legendFormat": "15min",
+          "legendFormat": "15分钟",
           "range": true,
           "refId": "C"
         }
       ],
-      "title": "Host Load",
+      "title": "主机负载",
       "type": "timeseries"
     },
     {
@@ -153,7 +153,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Tracks real-time power consumption of each GPU in watts.",
+      "description": "以瓦特为单位跟踪每个 GPU 的实时功耗。",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -232,7 +232,7 @@
           "refId": "A"
         }
       ],
-      "title": "GPU Power Usage",
+      "title": "GPU 功耗使用情况",
       "type": "timeseries"
     },
     {
@@ -240,7 +240,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Displays the combined power consumption of all GPUs in the system, measured in watts.",
+      "description": "显示系统中所有 GPU 的合并功耗，单位为瓦特。",
       "fieldConfig": {
         "defaults": {
           "mappings": [
@@ -308,7 +308,7 @@
           "refId": "A"
         }
       ],
-      "title": "GPU Total Power",
+      "title": "GPU 总功耗",
       "type": "gauge"
     },
     {
@@ -316,7 +316,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "The ratio of cycles an SM has at least 1 warp assigned.",
+      "description": "SM 至少分配了 1 个 warp 的周期比例。",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -397,7 +397,7 @@
           "refId": "A"
         }
       ],
-      "title": "SM Active",
+      "title": "SM 活跃度",
       "type": "timeseries"
     },
     {
@@ -405,7 +405,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Shows physical memory consumption, calculated as (Total Memory - Free Memory - Buffers - Cached).",
+      "description": "显示物理内存消耗，计算公式为（总内存 - 空闲内存 - 缓冲区 - 缓存）。",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -481,33 +481,33 @@
         {
           "expr": "node_memory_MemTotal_bytes{instance_id=\"$hostname\"} - node_memory_MemFree_bytes{instance_id=\"$hostname\"} - node_memory_Buffers_bytes{instance_id=\"$hostname\"} - node_memory_Cached_bytes{instance_id=\"$hostname\"}",
           "instant": false,
-          "legendFormat": "Used",
+          "legendFormat": "已用",
           "range": true,
           "refId": "A"
         },
         {
           "expr": "node_memory_Buffers_bytes{instance=\"$hostname\"}",
           "instant": false,
-          "legendFormat": "Buffered",
+          "legendFormat": "缓冲",
           "range": true,
           "refId": "B"
         },
         {
           "expr": "node_memory_Cached_bytes{instance=\"$hostname\"}",
           "instant": false,
-          "legendFormat": "Cached",
+          "legendFormat": "缓存",
           "range": true,
           "refId": "C"
         },
         {
           "expr": "node_memory_MemFree_bytes{instance=\"$hostname\"}",
           "instant": false,
-          "legendFormat": "Free",
+          "legendFormat": "空闲",
           "range": true,
           "refId": "D"
         }
       ],
-      "title": "System Memory Usage",
+      "title": "系统内存使用情况",
       "type": "timeseries"
     },
     {
@@ -515,7 +515,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Monitors the core temperature of each GPU in degrees Celsius.",
+      "description": "以摄氏度为单位监控每个 GPU 的核心温度。",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -594,7 +594,7 @@
           "refId": "A"
         }
       ],
-      "title": "GPU Temperature",
+      "title": "GPU 温度",
       "type": "timeseries"
     },
     {
@@ -602,7 +602,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Displays the average temperature across all GPUs in the system.",
+      "description": "显示系统中所有 GPU 的平均温度。",
       "fieldConfig": {
         "defaults": {
           "mappings": [
@@ -670,7 +670,7 @@
           "refId": "A"
         }
       ],
-      "title": "GPU Avg. Temperature",
+      "title": "GPU 平均温度",
       "type": "gauge"
     },
     {
@@ -678,7 +678,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Ratio of cycles the tensor (HMMA) pipe is active.",
+      "description": "Tensor (HMMA) 流水线处于活跃状态的周期比例。",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -759,7 +759,7 @@
           "refId": "A"
         }
       ],
-      "title": "Tensor Core Utilization",
+      "title": "Tensor Core 使用率",
       "type": "timeseries"
     },
     {
@@ -767,7 +767,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Shows total disk consumption as a percentage of total capacity.",
+      "description": "显示磁盘消耗占总容量的百分比。",
       "fieldConfig": {
         "defaults": {
           "mappings": [
@@ -835,7 +835,7 @@
           "refId": "A"
         }
       ],
-      "title": "Disk Usage",
+      "title": "磁盘使用率",
       "type": "gauge"
     },
     {
@@ -843,7 +843,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Displays the percentage of system RAM actively in use, excluding cache and buffers.",
+      "description": "显示系统 RAM 的活跃使用百分比，不包括缓存和缓冲区。",
       "fieldConfig": {
         "defaults": {
           "mappings": [
@@ -911,7 +911,7 @@
           "refId": "A"
         }
       ],
-      "title": "Memory Usage",
+      "title": "内存使用率",
       "type": "gauge"
     },
     {
@@ -919,7 +919,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Tracks the percentage of time the GPU is actively processing workloads.",
+      "description": "跟踪 GPU 正在处理工作负载的时间百分比。",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -998,7 +998,7 @@
           "refId": "A"
         }
       ],
-      "title": "GPU Utilization",
+      "title": "GPU 利用率",
       "type": "timeseries"
     },
     {
@@ -1006,7 +1006,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Displays the utilization across all GPUs in the system.",
+      "description": "显示系统中所有 GPU 的平均利用率。",
       "fieldConfig": {
         "defaults": {
           "mappings": [
@@ -1074,7 +1074,7 @@
           "refId": "A"
         }
       ],
-      "title": "GPU Total Utilization",
+      "title": "GPU 总利用率",
       "type": "gauge"
     },
     {
@@ -1082,7 +1082,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Ratio of cycles the fp64 pipes are active.",
+      "description": "FP64 流水线处于活跃状态的周期比例。",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1163,7 +1163,7 @@
           "refId": "A"
         }
       ],
-      "title": "FP64 Active",
+      "title": "FP64 活跃度",
       "type": "timeseries"
     },
     {
@@ -1171,7 +1171,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "The rate of data transmitted and received over the PCIe bus in bytes per second.",
+      "description": "通过 PCIe 总线传输和接收数据的速率，单位为字节/秒。",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1260,19 +1260,19 @@
         {
           "expr": "DCGM_FI_PROF_PCIE_TX_BYTES{instance_id=\"$hostname\"}",
           "instant": false,
-          "legendFormat": "GPU {{uuid}} Tx",
+          "legendFormat": "GPU {{uuid}} 发送 (Tx)",
           "range": true,
           "refId": "A"
         },
         {
           "expr": "DCGM_FI_PROF_PCIE_RX_BYTES{instance_id=\"$hostname\"}",
           "instant": false,
-          "legendFormat": "GPU {{uuid}} Rx",
+          "legendFormat": "GPU {{uuid}} 接收 (Rx)",
           "range": true,
           "refId": "B"
         }
       ],
-      "title": "PCIe Throughput",
+      "title": "PCIe 吞吐量",
       "type": "timeseries"
     },
     {
@@ -1280,7 +1280,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Measures the percentage of time the GPU's copy engines are actively transferring data between host and device memory.",
+      "description": "测量 GPU 拷贝引擎在主机和设备内存之间主动传输数据的时间百分比。",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1359,7 +1359,7 @@
           "refId": "A"
         }
       ],
-      "title": "GPU Memory Copy Utilization",
+      "title": "GPU 显存拷贝利用率",
       "type": "timeseries"
     },
     {
@@ -1367,7 +1367,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Displays the average utilization of GPU memory copy engines across all GPUs, showing the percentage of time spent transferring data between host and device memory.",
+      "description": "显示所有 GPU 的平均显存拷贝引擎利用率，即在主机和设备内存之间传输数据所花费的时间百分比。",
       "fieldConfig": {
         "defaults": {
           "mappings": [
@@ -1435,7 +1435,7 @@
           "refId": "A"
         }
       ],
-      "title": "GPU Total Memory Copy Utilization",
+      "title": "GPU 总显存拷贝利用率",
       "type": "gauge"
     },
     {
@@ -1443,7 +1443,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Ratio of cycles the fp32 pipes are active.",
+      "description": "FP32 流水线处于活跃状态的周期比例。",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1524,7 +1524,7 @@
           "refId": "A"
         }
       ],
-      "title": "FP32 Active",
+      "title": "FP32 活跃度",
       "type": "timeseries"
     },
     {
@@ -1532,7 +1532,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Displays the full system identifier.",
+      "description": "显示完整的系统标识符。",
       "fieldConfig": {
         "defaults": {
           "mappings": [
@@ -1587,7 +1587,7 @@
           "refId": "A"
         }
       ],
-      "title": "Compute instance name",
+      "title": "计算实例名称",
       "type": "stat"
     },
     {
@@ -1595,7 +1595,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Displays the Linux kernel version running on the host system.",
+      "description": "显示主机系统上运行的 Linux 内核版本。",
       "fieldConfig": {
         "defaults": {
           "mappings": [
@@ -1650,7 +1650,7 @@
           "refId": "A"
         }
       ],
-      "title": "Kernel",
+      "title": "内核版本",
       "type": "stat"
     },
     {
@@ -1658,7 +1658,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Displays the percentage of GPU memory currently allocated, calculated as used memory divided by total available memory.",
+      "description": "显示当前分配的 GPU 显存百分比，计算公式为已用显存除以总可用显存。",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1737,7 +1737,7 @@
           "refId": "A"
         }
       ],
-      "title": "GPU Memory Usage",
+      "title": "GPU 显存使用情况",
       "type": "timeseries"
     },
     {
@@ -1745,7 +1745,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Displays the average power consumption of GPUs in watts.",
+      "description": "显示 GPU 的平均功耗，单位为瓦特。",
       "fieldConfig": {
         "defaults": {
           "mappings": [
@@ -1813,7 +1813,7 @@
           "refId": "A"
         }
       ],
-      "title": "GPU Power Draw",
+      "title": "GPU 功耗",
       "type": "gauge"
     },
     {
@@ -1821,7 +1821,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Ratio of cycles the fp16 pipes are active.",
+      "description": "FP16 流水线处于活跃状态的周期比例。",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1900,7 +1900,7 @@
           "refId": "A"
         }
       ],
-      "title": "FP16 Active",
+      "title": "FP16 活跃度",
       "type": "timeseries"
     },
     {
@@ -1908,7 +1908,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Displays the current Streaming Multiprocessor (SM) clock frequency in MHz.",
+      "description": "显示当前流处理器 (SM) 的时钟频率，单位为 MHz。",
       "fieldConfig": {
         "defaults": {
           "mappings": [
@@ -1961,7 +1961,7 @@
           "refId": "A"
         }
       ],
-      "title": "GPU SM Clocks",
+      "title": "GPU SM 时钟频率",
       "type": "stat"
     },
     {
@@ -1969,7 +1969,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Displays the current memory clock frequency of the GPU in GHz.",
+      "description": "显示当前 GPU 的显存时钟频率，单位为 GHz。",
       "fieldConfig": {
         "defaults": {
           "mappings": [
@@ -2022,8 +2022,599 @@
           "refId": "A"
         }
       ],
-      "title": "GPU Memory Clocks",
+      "title": "GPU 显存时钟频率",
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "显示驱动信息、NVML 版本和 GPU 品牌。",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 25
+      },
+      "id": 25,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": false
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "expr": "DCGM_FI_DRIVER_VERSION{instance_id=\"$hostname\"}",
+          "format": "table",
+          "instant": true,
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "驱动信息",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "GPU 内存温度，以摄氏度为单位。",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 8,
+        "y": 25
+      },
+      "id": 25,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "expr": "DCGM_FI_DEV_MEMORY_TEMP{instance_id=\"$hostname\"}",
+          "instant": false,
+          "legendFormat": "{{uuid}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "GPU 内存温度",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "编码器 (ENC) 利用率百分比。",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 16,
+        "y": 25
+      },
+      "id": 26,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "expr": "DCGM_FI_DEV_ENC_UTIL{instance_id=\"$hostname\"}",
+          "instant": false,
+          "legendFormat": "{{uuid}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "GPU 编码器利用率",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "解码器 (DEC) 利用率百分比。",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 0,
+        "y": 30
+      },
+      "id": 27,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "expr": "DCGM_FI_DEV_DEC_UTIL{instance_id=\"$hostname\"}",
+          "instant": false,
+          "legendFormat": "{{uuid}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "GPU 解码器利用率",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "图形引擎处于活跃状态的时间比例。",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 8,
+        "y": 30
+      },
+      "id": 28,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "expr": "DCGM_FI_PROF_GR_ENGINE_ACTIVE{instance_id=\"$hostname\"} * 100",
+          "instant": false,
+          "legendFormat": "GPU {{uuid}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "图形引擎活跃度",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "SM 上驻留 warp 数量的比例。",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 16,
+        "y": 30
+      },
+      "id": 29,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "expr": "DCGM_FI_PROF_SM_OCCUPANCY{instance_id=\"$hostname\"} * 100",
+          "instant": false,
+          "legendFormat": "GPU {{uuid}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "SM 占用率",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "显存接口处于活跃状态发送或接收数据的周期比例。",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 0,
+        "y": 35
+      },
+      "id": 30,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "expr": "DCGM_FI_PROF_DRAM_ACTIVE{instance_id=\"$hostname\"} * 100",
+          "instant": false,
+          "legendFormat": "GPU {{uuid}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "显存接口活跃度",
+      "type": "timeseries"
     }
   ],
   "preload": false,
@@ -2060,7 +2651,7 @@
           "uid": "${datasource}"
         },
         "includeAll": false,
-        "label": "instance",
+        "label": "实例",
         "name": "hostname",
         "options": [],
         "query": "label_values(node_uname_info, instance_id)",
@@ -2074,7 +2665,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Nebius GPU",
+  "title": "Nebius GPU 监控",
   "uid": "nebius-gpu",
   "version": 3
 }
