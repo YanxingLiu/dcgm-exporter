@@ -2030,63 +2030,87 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "显示驱动信息、NVML 版本和 GPU 品牌。",
+      "description": "解码器 (DEC) 利用率百分比。",
       "fieldConfig": {
         "defaults": {
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
             }
-          ],
+          },
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": []
-          }
+          },
+          "unit": "percent"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 5,
-        "w": 6,
+        "w": 8,
         "x": 0,
         "y": 25
       },
-      "id": 25,
+      "id": 27,
       "options": {
-        "colorMode": "none",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": false
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
       },
       "pluginVersion": "12.3.1",
       "targets": [
         {
-          "expr": "DCGM_FI_DRIVER_VERSION{instance_id=\"$hostname\"}",
-          "format": "table",
-          "instant": true,
-          "range": false,
+          "expr": "DCGM_FI_DEV_DEC_UTIL{instance_id=\"$hostname\"}",
+          "instant": false,
+          "legendFormat": "{{uuid}}",
+          "range": true,
           "refId": "A"
         }
       ],
-      "title": "驱动信息",
-      "type": "stat"
+      "title": "GPU 解码器利用率",
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -2148,7 +2172,7 @@
         "x": 8,
         "y": 25
       },
-      "id": 25,
+      "id": 31,
       "options": {
         "legend": {
           "calcs": [],
@@ -2267,7 +2291,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "解码器 (DEC) 利用率百分比。",
+      "description": "显存接口处于活跃状态发送或接收数据的周期比例。",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2282,7 +2306,7 @@
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 0,
+            "fillOpacity": 10,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -2291,7 +2315,7 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
-            "lineWidth": 2,
+            "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
@@ -2322,13 +2346,15 @@
         "x": 0,
         "y": 30
       },
-      "id": 27,
+      "id": 30,
       "options": {
         "legend": {
-          "calcs": [],
+          "calcs": [
+            "lastNotNull"
+          ],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -2339,14 +2365,14 @@
       "pluginVersion": "12.3.1",
       "targets": [
         {
-          "expr": "DCGM_FI_DEV_DEC_UTIL{instance_id=\"$hostname\"}",
+          "expr": "DCGM_FI_PROF_DRAM_ACTIVE{instance_id=\"$hostname\"} * 100",
           "instant": false,
-          "legendFormat": "{{uuid}}",
+          "legendFormat": "GPU {{uuid}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "GPU 解码器利用率",
+      "title": "显存接口活跃度",
       "type": "timeseries"
     },
     {
@@ -2526,95 +2552,6 @@
       ],
       "title": "SM 占用率",
       "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "description": "显存接口处于活跃状态发送或接收数据的周期比例。",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "showValues": false,
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": []
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 8,
-        "x": 0,
-        "y": 35
-      },
-      "id": 30,
-      "options": {
-        "legend": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.3.1",
-      "targets": [
-        {
-          "expr": "DCGM_FI_PROF_DRAM_ACTIVE{instance_id=\"$hostname\"} * 100",
-          "instant": false,
-          "legendFormat": "GPU {{uuid}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "显存接口活跃度",
-      "type": "timeseries"
     }
   ],
   "preload": false,
@@ -2660,12 +2597,12 @@
     ]
   },
   "time": {
-    "from": "now-5m",
-    "to": "now"
+    "from": "2025-12-25T15:16:45.743Z",
+    "to": "2025-12-25T15:21:10.668Z"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Nebius GPU 监控",
   "uid": "nebius-gpu",
-  "version": 3
+  "version": 21
 }
