@@ -731,7 +731,7 @@
         "h": 5,
         "w": 7,
         "x": 17,
-        "y": 5
+        "y": 10
       },
       "id": 8,
       "options": {
@@ -1082,7 +1082,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "FP64 流水线处于活跃状态的周期比例。",
+      "description": "FP16/32/64 流水线处于活跃状态的周期比例。",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1135,7 +1135,7 @@
         "h": 5,
         "w": 7,
         "x": 17,
-        "y": 10
+        "y": 15
       },
       "id": 13,
       "options": {
@@ -1156,14 +1156,28 @@
       "pluginVersion": "12.3.1",
       "targets": [
         {
-          "expr": "DCGM_FI_PROF_PIPE_FP64_ACTIVE{instance_id=\"$hostname\"} * 100",
+          "expr": "DCGM_FI_PROF_PIPE_FP16_ACTIVE{instance_id=\"$hostname\"} * 100",
           "instant": false,
-          "legendFormat": "GPU {{uuid}}",
+          "legendFormat": "FP16 GPU {{uuid}}",
           "range": true,
           "refId": "A"
+        },
+        {
+          "expr": "DCGM_FI_PROF_PIPE_FP32_ACTIVE{instance_id=\"$hostname\"} * 100",
+          "instant": false,
+          "legendFormat": "FP32 GPU {{uuid}}",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "expr": "DCGM_FI_PROF_PIPE_FP64_ACTIVE{instance_id=\"$hostname\"} * 100",
+          "instant": false,
+          "legendFormat": "FP64 GPU {{uuid}}",
+          "range": true,
+          "refId": "C"
         }
       ],
-      "title": "FP64 活跃度",
+      "title": "FP 活跃度",
       "type": "timeseries"
     },
     {
@@ -1437,95 +1451,6 @@
       ],
       "title": "GPU 总显存拷贝利用率",
       "type": "gauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "description": "FP32 流水线处于活跃状态的周期比例。",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "showValues": false,
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": []
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 7,
-        "x": 17,
-        "y": 15
-      },
-      "id": 17,
-      "options": {
-        "legend": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.3.1",
-      "targets": [
-        {
-          "expr": "DCGM_FI_PROF_PIPE_FP32_ACTIVE{instance_id=\"$hostname\"} * 100",
-          "instant": false,
-          "legendFormat": "GPU {{uuid}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "FP32 活跃度",
-      "type": "timeseries"
     },
     {
       "datasource": {
@@ -1821,93 +1746,6 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "FP16 流水线处于活跃状态的周期比例。",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "showValues": false,
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": []
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 7,
-        "x": 17,
-        "y": 20
-      },
-      "id": 22,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": false
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.3.1",
-      "targets": [
-        {
-          "expr": "DCGM_FI_PROF_PIPE_FP16_ACTIVE{instance_id=\"$hostname\"} * 100",
-          "instant": false,
-          "legendFormat": "GPU {{uuid}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "FP16 活跃度",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
       "description": "显示当前流处理器 (SM) 的时钟频率，单位为 MHz。",
       "fieldConfig": {
         "defaults": {
@@ -2030,7 +1868,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "解码器 (DEC) 利用率百分比。",
+      "description": "SM 上驻留 warp 数量的比例。",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2045,7 +1883,7 @@
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 0,
+            "fillOpacity": 10,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -2054,7 +1892,7 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
-            "lineWidth": 2,
+            "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
@@ -2081,17 +1919,19 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 8,
-        "x": 0,
-        "y": 25
+        "w": 7,
+        "x": 17,
+        "y": 5
       },
-      "id": 27,
+      "id": 29,
       "options": {
         "legend": {
-          "calcs": [],
+          "calcs": [
+            "lastNotNull"
+          ],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -2102,188 +1942,14 @@
       "pluginVersion": "12.3.1",
       "targets": [
         {
-          "expr": "DCGM_FI_DEV_DEC_UTIL{instance_id=\"$hostname\"}",
+          "expr": "DCGM_FI_PROF_SM_OCCUPANCY{instance_id=\"$hostname\"} * 100",
           "instant": false,
-          "legendFormat": "{{uuid}}",
+          "legendFormat": "GPU {{uuid}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "GPU 解码器利用率",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "description": "GPU 内存温度，以摄氏度为单位。",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "showValues": false,
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": []
-          },
-          "unit": "celsius"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 8,
-        "x": 8,
-        "y": 25
-      },
-      "id": 31,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": false
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.3.1",
-      "targets": [
-        {
-          "expr": "DCGM_FI_DEV_MEMORY_TEMP{instance_id=\"$hostname\"}",
-          "instant": false,
-          "legendFormat": "{{uuid}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "GPU 内存温度",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "description": "编码器 (ENC) 利用率百分比。",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "showValues": false,
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": []
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 8,
-        "x": 16,
-        "y": 25
-      },
-      "id": 26,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": false
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.3.1",
-      "targets": [
-        {
-          "expr": "DCGM_FI_DEV_ENC_UTIL{instance_id=\"$hostname\"}",
-          "instant": false,
-          "legendFormat": "{{uuid}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "GPU 编码器利用率",
+      "title": "SM 占用率",
       "type": "timeseries"
     },
     {
@@ -2342,9 +2008,9 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 8,
-        "x": 0,
-        "y": 30
+        "w": 7,
+        "x": 17,
+        "y": 20
       },
       "id": 30,
       "options": {
@@ -2373,184 +2039,6 @@
         }
       ],
       "title": "显存接口活跃度",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "description": "图形引擎处于活跃状态的时间比例。",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "showValues": false,
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": []
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 8,
-        "x": 8,
-        "y": 30
-      },
-      "id": 28,
-      "options": {
-        "legend": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.3.1",
-      "targets": [
-        {
-          "expr": "DCGM_FI_PROF_GR_ENGINE_ACTIVE{instance_id=\"$hostname\"} * 100",
-          "instant": false,
-          "legendFormat": "GPU {{uuid}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "图形引擎活跃度",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "description": "SM 上驻留 warp 数量的比例。",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "showValues": false,
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": []
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 8,
-        "x": 16,
-        "y": 30
-      },
-      "id": 29,
-      "options": {
-        "legend": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.3.1",
-      "targets": [
-        {
-          "expr": "DCGM_FI_PROF_SM_OCCUPANCY{instance_id=\"$hostname\"} * 100",
-          "instant": false,
-          "legendFormat": "GPU {{uuid}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "SM 占用率",
       "type": "timeseries"
     }
   ],
